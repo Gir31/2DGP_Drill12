@@ -120,6 +120,15 @@ class Zombie:
         else:
             return BehaviorTree.RUNNING
 
+    def have_more_ball(self):
+        if self.ball_count >= play_mode.boy.ball_count:
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.FAIL
+
+    def avoid_to_boy(self, r=0.5):
+        self.state = 'Walk'
+
     def get_patrol_location(self):
         self.tx, self.ty = self.patrol_locations[self.loc_no]
         self.loc_no = (self.loc_no+1)%len(self.patrol_locations)
